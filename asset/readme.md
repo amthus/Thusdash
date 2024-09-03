@@ -142,8 +142,6 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce proje
 
 ## Licence
 
-Ce projet est sous la licence [MIT](LICENSE).
+Ce projet est realisepar malthus A.
 
 ---
-
-Assurez-vous de remplacer les chemins des images et les autres liens selon la structure de votre projet.
