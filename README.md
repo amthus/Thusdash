@@ -91,27 +91,27 @@ Voici quelques captures d'écran de l'application Thusdash :
 
 ### Page d'Inscription
 
-![Page d'Inscription](./asset/register.png)
+![Page d'Inscription](register.png)
 *La page d'inscription permet aux utilisateurs de créer un compte.*
 
 ### Page de Connexion
 
-![Page de Connexion](./asset/login.png)
+![Page de Connexion](login.png)
 *La page de connexion permet aux utilisateurs d'accéder à leur compte.*
 
 ### Tableau de Bord
 
-![Tableau de Bord](./asset/dash.png ) ( dash2.png)
+![Tableau de Bord](dash.png ) ( dash2.png)
 *Le tableau de bord affiche les projets multimédias et permet de gérer les vidéos.*
 
 ### Gestion des Projets
 
-![Gestion des Projets](./asset/crud.png)
+![Gestion des Projets](crud.png)
 *La gestion des projets permet de créer, éditer et supprimer des projets multimédias.*
 
 ### Édition de Vidéo
 
-![Édition de Vidéo](./asset/video.png)
+![Édition de Vidéo](video.png)
 *L'éditeur vidéo permet d'ajouter des filtres et du texte aux vidéos.*
 
 ## Contribuer
@@ -129,7 +129,7 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce proje
 4. **Commitez vos modifications** :
 
    ```bash
-   git commit -am 'Ajout de nouvelles fonctionnalités' 
+   git commit -am 'Ajout de nouvelles fonctionnalités'
    ```
 
 5. **Poussez vos modifications** :
@@ -142,6 +142,8 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce proje
 
 ## Licence
 
-Ce projet est realisepar malthus A.
+Ce projet est sous la licence [MIT](LICENSE).
 
 ---
+
+Assurez-vous de remplacer les chemins des images et les autres liens selon la structure de votre projet.
