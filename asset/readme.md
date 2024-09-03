@@ -129,7 +129,7 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce proje
 4. **Commitez vos modifications** :
 
    ```bash
-   git commit -am 'Ajout de nouvelles fonctionnalités'
+   git commit -am 'Ajout de nouvelles fonctionnalités' 
    ```
 
 5. **Poussez vos modifications** :
