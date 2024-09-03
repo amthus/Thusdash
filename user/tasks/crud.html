@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CRUD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #180161;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="date"],
+        .form-container input[type="file"],
+        .form-container button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background: #FB773C;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background: #EB3678;
+        }
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .project-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 300px;
+        }
+        .project-item img,
+        .project-item video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .project-info {
+            margin-top: 10px;
+        }
+        .project-info button {
+            background: #4F1787;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .project-info button:hover {
+            background: #180161;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project Management - CRUD</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form id="projectForm">
+                <input type="hidden" id="actionType" value="create">
+                <input type="hidden" id="projectId">
+                <label for="projectName">Project Name</label>
+                <input type="text" id="projectName" required>
+                <label for="projectDescription">Description</label>
+                <input type="text" id="projectDescription" required>
+                <label for="projectDate">Date</label>
+                <input type="date" id="projectDate" required>
+                <label for="projectMedia">Media</label>
+                <input type="file" id="projectMedia" accept="image/*,video/*" required>
+                <button type="submit">Save Project</button>
+            </form>
+        </div>
+        <div id="projectList" class="project-list"></div>
+    </div>
+    <script src="crud.js"></script>
+</body>
+</html>

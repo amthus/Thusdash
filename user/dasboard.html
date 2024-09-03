@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Project Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="dashbord.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #181818;
+            color: #FFFFFF;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #111111;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: width 0.3s;
+            position: relative;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .profile .avatar {
+            background-color: #444444;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-block;
+            line-height: 60px;
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .profile .id {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: transparent;
+            transition: background 0.3s;
+        }
+
+        .sidebar nav ul li a.active, .sidebar nav ul li a:hover {
+            background-color: #333333;
+        }
+
+        .sidebar .spaces {
+            margin-top: auto;
+        }
+
+        .sidebar .spaces h3 {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar .spaces ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none; /* Hidden by default */
+        }
+
+        .sidebar .spaces ul.show {
+            display: block; /* Show when active */
+        }
+
+        .sidebar .spaces ul li a {
+            color: #bbbbbb;
+            font-size: 14px;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar .spaces ul li a:hover {
+            background-color: #333333;
+        }
+
+        .update-banner {
+            background: linear-gradient(to right, #4f1787, #eb3678, #fb773c);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .update-banner a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .update-banner:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #1e1e1e;
+            overflow-y: auto;
+            transition: margin-left 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .toolbar {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header .toolbar button {
+            background: linear-gradient(to right, #4f1787, #eb3678, #fb773c);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .header .toolbar button:hover {
+            background: linear-gradient(to right, #eb3678, #fb773c, #4f1787);
+            transform: scale(1.05);
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .project-item {
+            background-color: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(33.333% - 20px);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-thumb {
+            width: 100px;
+            height: 100px;
+            background-color: #000000;
+            border-radius: 5px;
+            margin-right: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-thumb img, .project-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .project-info p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #bbbbbb;
+        }
+
+        .btn-download, .btn-import {
+            background: none;
+            border: none;
+            color: #4f1787;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* New Project Form */
+        #formOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #newProjectForm {
+            background: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            max-width: 90%;
+            display: none;
+            position: relative;
+        }
+
+        #newProjectForm h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        #newProjectForm label {
+            color: #dddddd;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #newProjectForm input, #newProjectForm textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #newProjectForm input[type="file"] {
+            padding: 0;
+        }
+
+        #newProjectForm button {
+            background: linear-gradient(to right, #4f1787, #eb3678, #fb773c);
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        #newProjectForm button:hover {
+            background: linear-gradient(to right, #eb3678, #fb773c, #4f1787);
+        }
+
+        #closeForm {
+            background: #888888;
+            border: none;
+            margin-left: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img, .modal-content video {
+            width: 100%;
+            height: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #444444;
+            border: none;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Sidebar: Display submenu for Tasks */
+        .sidebar nav ul li ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none; /* Hidden by default */
+        }
+
+        .sidebar nav ul li ul.show {
+            display: block; /* Show when active */
+        }
+
+        .sidebar nav ul li ul li a {
+            color: #bbbbbb;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar nav ul li ul li a:hover {
+            background-color: #333333;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <div class="avatar" id="userId">ID:</div>
+            <div class="id"id="userAvatar">Avatar:</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
+                <li><a href="#tasks" onclick="toggleTasksSubmenu()"><i class="fas fa-tasks"></i> Tasks <i class="fas fa-chevron-down"></i></a>
+                    <ul id="tasksSubmenu">
+                        <li><a href="#crud">CRUD</a></li>
+                        <li><a href="#VideoEditing">Video Editing</a></li>
+                    </ul>
+                </li>
+                <li><a href="#calendar"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                <li><a href="#settings"><i class="fas fa-cogs"></i> Settings</a></li>
+            </ul>
+        </nav>
+        <div class="spaces">
+            <h3 onclick="toggleSpaces()">Spaces <i class="fas fa-chevron-down"></i></h3>
+            <ul id="spacesList">
+                <li><a href="#space1">Space 1</a></li>
+                <li><a href="#space2">Space 2</a></li>
+                <li><a href="#space3">Space 3</a></li>
+            </ul>
+        </div>
+        <div class="update-banner">
+            <a href="#">Check out our latest updates!</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <button onclick="toggleSidebar()">☰</button>
+            <div class="toolbar">
+                <button id="newProjectBtn">+ New Project</button>
+                <button class="btn-download"><i class="fas fa-download"></i></button>
+                <button class="btn-import"><i class="fas fa-upload"></i></button>
+            </div>
+        </div>
+
+        <div class="projects" id="projectList">
+            <!-- Projects will be dynamically inserted here -->
+        </div>
+
+        <!-- Task Sections -->
+         <!-- crud -->
+
+        <div id="crud" style="display: none;">
+            <h2>CRUD Functionality</h2>
+            <header>
+                <h1>Project Management - CRUD</h1>
+            </header>
+            <div class="container">
+                <div class="form-container">
+                    <form id="projectForm">
+                        <input type="hidden" id="actionType" value="create">
+                        <input type="hidden" id="projectId">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" id="projectName" required>
+                        <label for="projectDescription">Description</label>
+                        <input type="text" id="projectDescription" required>
+                        <label for="projectDate">Date</label>
+                        <input type="date" id="projectDate" required>
+                        <label for="projectMedia">Media</label>
+                        <input type="file" id="projectMedia" accept="image/*,video/*" required>
+                        <button type="submit">Save Project</button>
+                    </form>
+                </div>
+                <div id="projectList" class="project-list"></div>
+            </div>
+        </div>
+        <!-- video Sections -->
+         
+        <header>
+            <h1>Professional Video Editor</h1>
+        </header>
+        <div class="editor-container">
+            <div class="search-bar">
+                <input type="text" id="searchVideos" placeholder="Search for videos...">
+            </div>
+            <div class="video-list">
+                <ul id="videoList">
+                    <!-- Video list items will be dynamically added here -->
+                    <li data-video="video1.mp4">Video 1</li>
+                    <li data-video="video2.mp4">Video 2</li>
+                    <li data-video="video3.mp4">Video 3</li>
+                    <!-- Add more video items as needed -->
+                </ul>
+            </div>
+            <div class="controls">
+                <button id="playButton">Play</button>
+                <button id="pauseButton">Pause</button>
+                <button id="stopButton">Stop</button>
+                <button id="trimButton">Trim</button>
+                <button id="addTextButton">Add Text</button>
+                <button id="addFilterButton">Add Filter</button>
+                <button id="exportButton">Export Video</button>
+            </div>
+            <div class="preview-container">
+                <video id="videoPlayer" controls style="display:none;"></video>
+            </div>
+            <div class="video-canvas">
+                <canvas id="videoCanvas"></canvas>
+            </div>
+            <div class="filter-controls">
+                <label for="filterSelect">Choose Filter:</label>
+                <select id="filterSelect">
+                    <option value="none">None</option>
+                    <option value="grayscale">Grayscale</option>
+                    <option value="sepia">Sepia</option>
+                    <option value="invert">Invert</option>
+                </select>
+                <label for="textInput">Text:</label>
+                <input type="text" id="textInput" placeholder="Enter text to overlay">
+            </div>
+            <div class="mix-controls">
+                <label for="mixSelect">Mix with:</label>
+                <select id="mixSelect">
+                    <option value="none">None</option>
+                    <option value="video1">Video 1</option>
+                    <option value="video2">Video 2</option>
+                </select>
+                <button id="addMixButton">Add Mix</button>
+            </div>
+            <div class="effects">
+                <button id="applyEffectsButton">Apply Effects</button>
+                <button id="enhanceButton">Enhance</button>
+            </div>
+        </div>
+        <script src="vid.js"></script>
+    </div>
+
+    <!-- New Project Form -->
+    <div id="formOverlay">
+        <div id="newProjectForm">
+            <button id="closeForm">X</button>
+            <h3>Create New Project</h3>
+            <form id="projectForm">
+                <label for="projectName">Project Name</label>
+                <input type="text" id="projectName" name="projectName" required>
+                <label for="projectDescription">Description</label>
+                <textarea id="projectDescription" name="projectDescription" rows="4" required></textarea>
+                <label for="projectDate">Date</label>
+                <input type="date" id="projectDate" name="projectDate" required>
+                <label for="projectMedia">Image/Video</label>
+                <input type="file" id="projectMedia" name="projectMedia" accept="image/*,video/*" required>
+                <button type="submit">Create Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="mediaModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <img id="modalImage" style="display:none;">
+            <video id="modalVideo" controls style="display:none;"></video>
+        </div>
+    </div>
+    <script src="crud.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('show');
+            document.querySelector('.main-content').classList.toggle('shift');
+        }
+
+        function toggleSpaces() {
+            document.getElementById('spacesList').classList.toggle('show');
+        }
+
+        function toggleTasksSubmenu() {
+            document.getElementById('tasksSubmenu').classList.toggle('show');
+        }
+
+        document.getElementById('newProjectBtn').addEventListener('click', function() {
+            document.getElementById('formOverlay').style.display = 'flex';
+            document.getElementById('newProjectForm').style.display = 'block';
+        });
+
+        document.getElementById('closeForm').addEventListener('click', function() {
+            document.getElementById('formOverlay').style.display = 'none';
+            document.getElementById('newProjectForm').style.display = 'none';
+        });
+
+        document.getElementById('projectForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const projectName = document.getElementById('projectName').value;
+            const projectDescription = document.getElementById('projectDescription').value;
+            const projectDate = document.getElementById('projectDate').value;
+            const projectMedia = document.getElementById('projectMedia').files[0];
+            const mediaURL = URL.createObjectURL(projectMedia);
+
+            // Create a new project item
+            const projectList = document.getElementById('projectList');
+            const projectItem = document.createElement('div');
+            projectItem.className = 'project-item';
+            projectItem.innerHTML = `
+                <div class="project-thumb">
+                    ${projectMedia.type.startsWith('image') 
+                        ? `<img src="${mediaURL}" alt="Project Media">` 
+                        : `<video src="${mediaURL}" controls></video>`
+                    }
+                </div>
+                <div class="project-info">
+                    <h4>${projectName}</h4>
+                    <p>${projectDescription}</p>
+                    <p>${projectDate}</p>
+                </div>
+            `;
+            projectItem.addEventListener('click', function() {
+                openModal(mediaURL, projectMedia.type);
+            });
+            projectList.appendChild(projectItem);
+
+            // Hide the form
+            document.getElementById('formOverlay').style.display = 'none';
+            document.getElementById('newProjectForm').style.display = 'none';
+            document.getElementById('projectForm').reset();
+        });
+
+        function openModal(mediaURL, mediaType) {
+            const modal = document.getElementById('mediaModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalVideo = document.getElementById('modalVideo');
+
+            if (mediaType.startsWith('image')) {
+                modalImage.src = mediaURL;
+                modalImage.style.display = 'block';
+                modalVideo.style.display = 'none';
+            } else {
+                modalImage.style.display = 'none';
+                modalVideo.src = mediaURL;
+                modalVideo.style.display = 'block';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        document.querySelector('.modal-close').addEventListener('click', function() {
+            document.getElementById('mediaModal').style.display = 'none';
+        });
+
+        // Display section based on selected submenu
+        document.querySelectorAll('.sidebar nav ul li ul li a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                document.querySelectorAll('.main-content > div[id]').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById(sectionId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
