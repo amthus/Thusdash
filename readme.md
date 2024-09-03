@@ -94,27 +94,27 @@ Voici quelques captures d'écran de l'application Thusdash :
 
 ### Page d'Inscription
 
-![Page d'Inscription](register.png)
+![Page d'Inscription](./asset/register.png)
 *La page d'inscription permet aux utilisateurs de créer un compte.*
 
 ### Page de Connexion
 
-![Page de Connexion](login.png)
+![Page de Connexion](./asset/login.png)
 *La page de connexion permet aux utilisateurs d'accéder à leur compte.*
 
 ### Tableau de Bord
 
-![Tableau de Bord](dash.png ) ( dash2.png)
+![Tableau de Bord](./asset/dash.png ) ( dash2.png)
 *Le tableau de bord affiche les projets multimédias et permet de gérer les vidéos.*
 
 ### Gestion des Projets
 
-![Gestion des Projets](crud.png)
+![Gestion des Projets](./asset/crud.png)
 *La gestion des projets permet de créer, éditer et supprimer des projets multimédias.*
 
 ### Édition de Vidéo
 
-![Édition de Vidéo](video.png)
+![Édition de Vidéo](./asset/video.png)
 *L'éditeur vidéo permet d'ajouter des filtres et du texte aux vidéos.*
 
 ## Contribuer
