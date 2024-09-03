@@ -380,18 +380,10 @@
                         <li><a href="#VideoEditing">Video Editing</a></li>
                     </ul>
                 </li>
-                <li><a href="#calendar"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
                 <li><a href="#settings"><i class="fas fa-cogs"></i> Settings</a></li>
             </ul>
         </nav>
-        <div class="spaces">
-            <h3 onclick="toggleSpaces()">Spaces <i class="fas fa-chevron-down"></i></h3>
-            <ul id="spacesList">
-                <li><a href="#space1">Space 1</a></li>
-                <li><a href="#space2">Space 2</a></li>
-                <li><a href="#space3">Space 3</a></li>
-            </ul>
-        </div>
+
         <div class="update-banner">
             <a href="#">Check out our latest updates!</a>
         </div>
@@ -438,67 +430,7 @@
                 <div id="projectList" class="project-list"></div>
             </div>
         </div>
-        <!-- video Sections -->
-         
-        <header>
-            <h1>Professional Video Editor</h1>
-        </header>
-        <div class="editor-container">
-            <div class="search-bar">
-                <input type="text" id="searchVideos" placeholder="Search for videos...">
-            </div>
-            <div class="video-list">
-                <ul id="videoList">
-                    <!-- Video list items will be dynamically added here -->
-                    <li data-video="video1.mp4">Video 1</li>
-                    <li data-video="video2.mp4">Video 2</li>
-                    <li data-video="video3.mp4">Video 3</li>
-                    <!-- Add more video items as needed -->
-                </ul>
-            </div>
-            <div class="controls">
-                <button id="playButton">Play</button>
-                <button id="pauseButton">Pause</button>
-                <button id="stopButton">Stop</button>
-                <button id="trimButton">Trim</button>
-                <button id="addTextButton">Add Text</button>
-                <button id="addFilterButton">Add Filter</button>
-                <button id="exportButton">Export Video</button>
-            </div>
-            <div class="preview-container">
-                <video id="videoPlayer" controls style="display:none;"></video>
-            </div>
-            <div class="video-canvas">
-                <canvas id="videoCanvas"></canvas>
-            </div>
-            <div class="filter-controls">
-                <label for="filterSelect">Choose Filter:</label>
-                <select id="filterSelect">
-                    <option value="none">None</option>
-                    <option value="grayscale">Grayscale</option>
-                    <option value="sepia">Sepia</option>
-                    <option value="invert">Invert</option>
-                </select>
-                <label for="textInput">Text:</label>
-                <input type="text" id="textInput" placeholder="Enter text to overlay">
-            </div>
-            <div class="mix-controls">
-                <label for="mixSelect">Mix with:</label>
-                <select id="mixSelect">
-                    <option value="none">None</option>
-                    <option value="video1">Video 1</option>
-                    <option value="video2">Video 2</option>
-                </select>
-                <button id="addMixButton">Add Mix</button>
-            </div>
-            <div class="effects">
-                <button id="applyEffectsButton">Apply Effects</button>
-                <button id="enhanceButton">Enhance</button>
-            </div>
-        </div>
-        <script src="vid.js"></script>
-    </div>
-
+       
     <!-- New Project Form -->
     <div id="formOverlay">
         <div id="newProjectForm">
