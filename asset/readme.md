@@ -1,6 +1,3 @@
-Voici le README corrigé et amélioré :
-
----
 
 # Thusdash
 
